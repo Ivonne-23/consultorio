@@ -17,6 +17,7 @@ Route::resource('odontologos', App\Http\Controllers\OdontologosController::class
 
 Route::resource('pacientes', App\Http\Controllers\PacientesController::class);
 
+Route::resource('citas', App\Http\Controllers\CitasController::class);
 
 
 

@@ -2,17 +2,16 @@
 @section('content')
     <div class="container bg-white">
         <div class="row">
-            <div class="col-2 bg-primary p-4 text-white vh-100">
-                <div class="text-center mb-4">
-                    <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle w-75" alt="Logo Consultorio">
+            <div class="col-2 bg-primary p-2 text-white vh-100">
+                <div class="text-center  ">
+                    <img src="{{ asset('img/login.jpg') }}" class="rounded-circle w-75" alt="Logo Consultorio">
+                    <h3 class="text-center p-4">{{ Auth::user()->name }}</h3>
                 </div>
-                <h4 class="p-2"><i class="bi bi-house-door"></i> Inicio</h4>
-                <h5 class="p-2"><a href="{{route('odontologos.index')}}" class="btn text-decoration-none" {{ request()->routeIs('odontologos.index')? 'active_custom':''}} text-white><i class="bi bi-person-badge"></i> Odontologos</a></h5>
+                <h4 class="p-2"><a href="{{route('odontologos.index')}}" class="btn text-decoration-none" {{ request()->routeIs('odontologos.index')? 'active_custom':''}} text-white><i class="bi bi-person-badge"></i> Odontologos</a></h4>
                 <h4 class="p-2"><a href="{{route('pacientes.index')}}" class="btn text-decoration-none" {{ request()->routeIs('pacientes.index')? 'active_custom':''}} text-white><i class="bi bi-person-lines-fill"></i> Pacientes</a></h4>
-                <h4 class="p-2"><i class="bi bi-calendar-check"></i> Citas</h4>
-                <h5 class="p-2"><i class="bi bi-file-earmark-medical"></i> Expedientes</h5>
+                <h4 class="p-2"><a href="{{ route('citas.index') }}" class="btn text-decoration-none {{ request()->routeIs('citas.index') ? 'text-white' : '' }}"><i class="bi bi-calendar-check"></i> Citas</a></h4>
+                <h4 class="p-2"><i class="bi bi-file-earmark-medical"></i> Expedientes</h4>
                 <h4 class="p-2"><i class="bi bi-bar-chart"></i> Pagos</h4>
-                <h5 class="p-2"> <i class="bi bi-gear"></i> Pagos</h5>
                 <h4 class="p-2 text-white">
                     <form method="POST" action="{{route('logout')}}">
                         @csrf
@@ -24,7 +23,7 @@
             <div class="col bg-light p-4">
                 <div class="row mb-4">
                     <div class="col">
-                        <h2 class="text-cons"><i class="bi bi-bar-chart-line"></i> Panel de Control</h2>
+                        <h2 class="text-center"><i class="bi bi-bar-chart-line"></i> Panel de Control</h2>
                     </div>
                 </div>
                 <div class="row">
