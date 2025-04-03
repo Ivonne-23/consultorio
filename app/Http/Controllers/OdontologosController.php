@@ -31,18 +31,15 @@ class OdontologosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre' => 'required|string|max:200',
             'apellido_paterno' => 'required|string|max:200',
             'apellido_materno' => 'required|string|max:200',
             'especialidad' => 'required|string|max:200',
         ]);
-
-        // Crear nuevo odontólogo
-        Odontologo::create($request->all());
-
+        Odontologo::create($validatedData);
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo creado con éxito.');
+
     }
 
     /**

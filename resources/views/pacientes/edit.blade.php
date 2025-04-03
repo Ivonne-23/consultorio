@@ -1,18 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Editar Paciente</h1>
-    <a href="{{ route('pacientes.index') }}" class="btn btn-primary">Regresar</a>
 
-    <form action="{{ route('pacientes.update', $paciente->id_paciente) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <input type="text" name="nombre" value="{{ $paciente->nombre }}" required>
-        <input type="text" name="apellido_paterno" value="{{ $paciente->apellido_paterno }}" required>
-        <input type="text" name="apellido_materno" value="{{ $paciente->apellido_materno }}" required>
-        <input type="text" name="direccion" value="{{ $paciente->direccion }}" required>
-        <input type="text" name="telefono" value="{{ $paciente->telefono }}" required>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="alert alert-success">Editar Paciente</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <a href="{{ route('pacientes.index') }}" class="btn btn-primary">Regresar</a>
+            </div>
+        </div>
+    </div>
 
-        <button type="submit">Actualizar</button>
-    </form>
+    @if ($errors->any())
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <form action="{{ route('pacientes.update', $paciente->id_paciente) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $paciente->nombre) }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" value="{{ old('apellido_paterno', $paciente->apellido_paterno) }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="apellido_materno" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno', $paciente->apellido_materno) }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion', $paciente->direccion) }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono', $paciente->telefono) }}" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+        </div>
+    </div>
+
 @endsection

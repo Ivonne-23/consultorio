@@ -5,9 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card p-4">
-                <h6><img src="{{ asset('img/logo.jpg') }}" class="rounded-circle" width="50" alt="Logo"> Diseñando Sonrisas</h6>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                <h6 class="d-flex align-items-center gap-3 ">
+                    <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle" width="50" alt="Logo">
+                    Diseñando Sonrisas
+                    <a class="nav-link ms-3 " href="{{route('register')}}">
+                        <i class="fa-solid fa-user "></i> Registrar
+                    </a>
+                </h6>
+
+                <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">

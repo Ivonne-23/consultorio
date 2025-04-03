@@ -6,6 +6,11 @@
             <h1 class="alert alert-success">Pacientes</h1>
             <a href="{{ route('pacientes.create') }}" class="btn btn-success">Agregar Paciente</a>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-8 p-4">
+                <a href="{{ route('home') }}" class="btn btn-success">Regresar</a>
+            </div>
+        </div>
     </div>
 
     @if(session('success'))
@@ -40,12 +45,15 @@
                         <td>{{ $paciente->direccion }}</td>
                         <td>{{ $paciente->telefono }}</td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('pacientes.edit', $paciente->id_paciente) }}">Editar</a>
-                            <form action="{{ route('pacientes.destroy', $paciente->id_paciente) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Eliminar</button>
-                            </form>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-warning btn-sm" href="{{ route('pacientes.edit', $paciente->id_paciente) }}">Editar</a>
+                                <form action="{{ route('pacientes.destroy', $paciente->id_paciente) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                                </form>
+
+                            </div>
                         </td>
                     </tr>
                 @endforeach

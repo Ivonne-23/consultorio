@@ -6,8 +6,11 @@
             <h1 class="alert alert-success">Odontólogos</h1>
             <a href="{{ route('odontologos.create') }}" class="btn btn-success">Agregar Odontólogo</a>
         </div>
-    </div>
-
+        <div class="row justify-content-center">
+            <div class="col-8 p-4">
+                <a href="{{ route('home') }}" class="btn btn-success">Regresar</a>
+            </div>
+        </div>
     @if(session('success'))
         <div class="row justify-content-center">
             <div class="col-4">
@@ -15,7 +18,7 @@
             </div>
         </div>
     @endif
-
+    </div>
     <div class="row justify-content-center mt-5">
         <div class="col-8">
             <table class="table table-striped table-hover">
@@ -38,17 +41,20 @@
                         <td>{{ $odontologo->apellido_materno }}</td>
                         <td>{{ $odontologo->especialidad }}</td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
-                            <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
-                            @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Eliminar</button>
-                            </form>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
+                                <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
+
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+         </table>
     </div>
+</div>
 @endsection

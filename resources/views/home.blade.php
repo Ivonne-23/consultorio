@@ -11,6 +11,8 @@
                 <h4 class="p-2"><a href="{{route('pacientes.index')}}" class="btn text-decoration-none" {{ request()->routeIs('pacientes.index')? 'active_custom':''}} text-white><i class="bi bi-person-lines-fill"></i> Pacientes</a></h4>
                 <h4 class="p-2"><a href="{{ route('citas.index') }}" class="btn text-decoration-none {{ request()->routeIs('citas.index') ? 'text-white' : '' }}"><i class="bi bi-calendar-check"></i> Citas</a></h4>
                 <h4 class="p-2"><i class="bi bi-file-earmark-medical"></i> Expedientes</h4>
+                <h4 class="p-2"><i class="bi bi-calendar-check"></i> Citas</h4>
+                <h4 class="p-2"><a href="{{route('tratamientos.index')}}" class="btn text-decoration-none {{ request()->routeIs('tratamientos.*') ? 'active_custom' : '' }} text-white"><i class="bi bi-clipboard2-pulse"></i> Tratamientos</a></h4>
                 <h4 class="p-2"><i class="bi bi-bar-chart"></i> Pagos</h4>
                 <h4 class="p-2 text-white">
                     <form method="POST" action="{{route('logout')}}">

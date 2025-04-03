@@ -19,4 +19,5 @@ class pacientes extends Model
         'direccion',
         'telefono'
     ];
+
 }

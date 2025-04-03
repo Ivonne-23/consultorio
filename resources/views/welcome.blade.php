@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid p-0">
-        <div class="w-100 bg-primary text-white p-2">
+        <div class="w-100 bg-info-subtle text-dark p-2">
             <div class="row align-items-center">
                 <div class="col-2 ">
                     <h6><img src="{{ asset('img/logo.jpg') }}" class="rounded-circle" width="50" alt="Logo"> Diseñando Sonrisas</h6>
@@ -19,27 +19,23 @@
                 <div class="col-2 d-flex align-items-center">
                     <h6 class="nav-item p-2">
                         <a class="nav-link" href="{{route('login')}}"><i class="fa-solid fa-user"></i> login</a></h6>
-                    <div>
-                        <h6 class="nav-item p-2">
-                            <a class="nav-link" href="{{route('register')}}"><i class="fa-solid fa-user"></i> Registrar</a></h6>
-                    </div>
 
                 </div>
              </div>
         </div>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active position-relative">
                     <img src="{{ asset('img/imagen1.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 1">
-                    <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
-                        <h1 class="display-1 text-white">DISEÑANDO SONRISAS</h1>
-                        <h4 class="text-white">"Diseña tu sonrisa, Diseña tu vida"</h4>
+                    <div class="carousel-caption position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-50 rounded p-4">
+                        <h2 class="display-3 text-white fw-bold">DISEÑANDO SONRISAS</h2>
+                        <h4 class="text-white ">"Diseña tu sonrisa, Diseña tu vida"</h4>
                     </div>
                 </div>
+
                 <div class="carousel-item">
                     <img src="{{ asset('img/sonrisados.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 2">
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
-                        <h4 class="text-white">"HOLI"</h4>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -47,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="row bg-info text-white py-5">
+        <div class="row bg-info-subtle text-dark py-5">
             <div class="col text-center">
                 <h3>¿Quiénes somos?</h3>
                 <h4 class="text-center p-4">Somos un equipo de odontologos especialisados,que se  comprometemos
@@ -104,6 +100,10 @@
                     <h5 class="text-secondary"> Sabado, Domingo: 10:00 - 14:00 a 15:30 - 17:00</h5>
 
                 </div>
+
+        </div>
+            <div class="row p-2 bg-black ">
+                <p class="text-white">&copy; 2025 Sonrisa Perfecta | Diseñando sonrisas.com</p>
             </div>
         </div>
     </div>
