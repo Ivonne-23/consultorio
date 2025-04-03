@@ -2,7 +2,7 @@
 @section('content')
     <div class="container bg-white">
         <div class="row">
-            <div class="col-2 bg-cons p-4 text-white vh-100">
+            <div class="col-2 bg-primary p-4 text-white vh-100">
                 <div class="text-center mb-4">
                     <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle w-75" alt="Logo Consultorio">
                 </div>
