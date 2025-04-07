@@ -33,14 +33,15 @@ class CitasController extends Controller
     {
         //
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:200',
-            'apellido_materno' => 'required|string|max:200',
-            'especialidad' => 'required|string|max:200',
-        ]);
-        Odontologo::create($request->all()); // Ahora Laravel reconocerá la clase
+        'nombre_paciente' => 'required|string|max:255',
+        'nombre_odontologo' => 'required|string|max:255',
+        'fecha' => 'required|date',
+        'hora' => 'required|date_format:H:i',
+    ]);
+    
+    Citas::create($request->all());
 
-        return redirect()->route('odontologos.index')->with('success', 'Odontólogo creado con éxito.');
+    return redirect()->route('citas.index')->with('success', 'Cita creada con éxito.');
     }
 
 

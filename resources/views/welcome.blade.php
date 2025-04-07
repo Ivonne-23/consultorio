@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="carousel-item">
-                    <img src="{{ asset('img/sonrisados.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 2">
+                    <img src="{{ asset('img/muela.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 2">
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
                     </div>
                 </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-4 p-2 ">
                 <h3><i class="fa-solid fa-whatsapp"></i> WhatsApp</h3>
-                <h5 class="text-secondary">+524433935191</h5>
+                <h5 class="text-secondary">+52 4433935191</h5>
             </div>
             <div class="row">
                 <div class="col-4 p-2 ">

@@ -39,8 +39,8 @@
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $cita->nombre_paciente }}</td>
                         <td>{{ $cita->nombre_odontologo }}</td>
-                        <td>{{ $cita->fecha }}</td>
-                        <td>{{ $cita->hora }}</td>
+                        <td>{{ \Carbon\Carbon::parse($cita->fecha)->format('Y-m-d') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($cita->hora)->format('H:i') }}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-warning" href="{{ route('citas.edit', $cita->id_cita) }}">Editar</a>

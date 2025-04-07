@@ -11,35 +11,35 @@
                 <a href="{{ route('home') }}" class="btn btn-success">Regresar</a>
             </div>
         </div>
-    @if(session('success'))
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <p class="alert alert-success">{{ session('success') }}</p>
+        @if(session('success'))
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <p class="alert alert-success">{{ session('success') }}</p>
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-8">
             <table class="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Especialidad</th>
-                    <th>Acciones</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Especialidad</th>
+                        <th>Acciones</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach($odontologos as $odontologo)
+                    @foreach($odontologos as $odontologo)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $odontologo->nombre }}</td>
                         <td>{{ $odontologo->apellido_paterno }}</td>
                         <td>{{ $odontologo->apellido_materno }}</td>
-                        <td>{{ $odontologo->especialidad }}</td>
+                        <td>{{ $odontologo->Especialidad }}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
@@ -50,11 +50,10 @@
                                 </form>
                             </div>
                         </td>
-
                     </tr>
-                @endforeach
-            </tbody>
-         </table>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 @endsection

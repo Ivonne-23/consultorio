@@ -9,7 +9,7 @@ class TratamientosController extends Controller
 {
     public function index()
     {
-        $tratamientos = Tratamiento::all();
+        $tratamientos = Tratamiento::latest()->paginate(10);
         return view('tratamientos.index', compact('tratamientos'));
     }
 

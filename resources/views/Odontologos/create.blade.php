@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="row justify-content-center">
         <div class="col-8">
@@ -41,12 +42,11 @@
                     <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text" class="form-control" id="especialidad" name="especialidad" value="{{ old('especialidad') }}" required>
+                    <label for="Especialidad" class="form-label">Especialidad</label>
+                    <input type="text" class="form-control" id="Especialidad" name="Especialidad" value="{{ old('Especialidad') }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>
     </div>
 @endsection
-

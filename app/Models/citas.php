@@ -7,14 +7,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class citas extends Model
 {
-    //
-    use softDeletes;
+    use SoftDeletes;
+    
     protected $table = 'citas';
     protected $primaryKey = 'id_cita';
-    public $timestamps = false;
-    protected $fillable = ['nombre_paciente',
-        'nombre_odondologo',
+    protected $fillable = [
+        'nombre_paciente',
+        'nombre_odontologo', // Corregido: elimina la 'd' extra
         'fecha',
-        'hora'];
-
+        'hora'
+    ];
+    
+    // Cambiado a true ya que tu tabla sí tiene estos campos
+    public $timestamps = true;
+    
+    // Si quieres formato personalizado para las fechas
+    protected $casts = [
+        'fecha' => 'date:Y-m-d',
+        'hora' => 'datetime:H:i'
+    ];
 }
