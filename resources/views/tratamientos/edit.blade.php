@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.menu_dash')
 
 @section('content')
 <div class="row justify-content-center">
@@ -23,7 +23,7 @@
                 <form action="{{ route('tratamientos.update', $tratamiento->id_tratamiento) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="mb-3">
                         <label for="nombre_tratamiento" class="form-label">Nombre del Tratamiento</label>
                         <input type="text" class="form-control" id="nombre_tratamiento" name="nombre_tratamiento"

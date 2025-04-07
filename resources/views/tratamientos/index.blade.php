@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.menu_dash')
 
 @section('content')
 <div class="row justify-content-center">
@@ -7,7 +7,7 @@
         <a href="{{ route('tratamientos.create') }}" class="btn btn-success mb-3">
             <i class="fas fa-plus"></i> Nuevo Tratamiento
         </a>
-        
+
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -33,11 +33,11 @@
                     <td>{{ $tratamiento->costo_formateado }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('tratamientos.edit', $tratamiento->id_tratamiento) }}" 
+                            <a href="{{ route('tratamientos.edit', $tratamiento->id_tratamiento) }}"
                                class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            <form action="{{ route('tratamientos.destroy', $tratamiento->id_tratamiento) }}" 
+                            <form action="{{ route('tratamientos.destroy', $tratamiento->id_tratamiento) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -56,7 +56,7 @@
                 @endforelse
             </tbody>
         </table>
-        
+
         {{ $tratamientos->links() }}
     </div>
 </div>
