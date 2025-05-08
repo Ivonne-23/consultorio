@@ -14,10 +14,9 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+        $odontologos = Odontologos::all();
+        return view('welcome', compact('odontologos'));
 
-
-        $tratamientos = Tratamiento::all();
-        return view('welcome', compact('odontologos', 'tratamientos'));
     }
 
     /**

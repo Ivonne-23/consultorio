@@ -30,6 +30,28 @@
                     con la salud bucal de las personas, ofreciendo una amplia gama de servicios para cuidar tu sonrisa.</h4>
             </div>
         </div>
+        <div class="container my-5 bg-body-secondary p-4">
+            <h1 class="text-center text-dark mb-4">Odontólogos</h1>
+            <div class="row justify-content-center">
+                @foreach ($odontologos as $odontologo)
+                    <div class="col-md-auto mb-4">
+                        <div class="card bg-primary text-white" style="width: 18rem;">
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}"
+                                 class="card-img-top mx-auto mt-3"
+                                 alt="Imagen de {{ $odontologo->nombre }}"
+                                 style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $odontologo->nombre }} {{ $odontologo->apellido_paterno }}</h5>
+                                <p class="card-text">{{ $odontologo->Especialidad ?? 'Sin especialidad' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        </div>
+
         <div class="container my-5">
             <h2 class="text-center text-dark mb-4">¿Qué ofrecemos?</h2>
             <div class="row justify-content-center">
