@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\citas;
+use App\Models\Citas;
+use App\Models\Pacientes;
+use App\Models\Odontologos;
+
 use Illuminate\Http\Request;
 
 class CitasController extends Controller
@@ -12,9 +15,14 @@ class CitasController extends Controller
      */
     public function index()
     {
+        $citas = Citas::join('odontologos', 'odontologos.id_odontologo', '=', 'citas.id_odontologo')
+            ->join('pacientes', 'pacientes.id_paciente', '=', 'citas.id_paciente')
+            ->select('citas.*', 'pacientes.nombre as nombre_paciente', 'odontologos.nombre as nombre_odontologo')
+            ->get();
 
-        $citas=citas    ::all();
-        return view('citas.index',compact('citas'));
+
+        return view('citas.index', compact('citas'));
+
     }
 
     /**
@@ -22,8 +30,10 @@ class CitasController extends Controller
      */
     public function create()
     {
-        //
-        return view('citas.create');
+        $pacientes = Pacientes::all();
+        $odontologos = Odontologos::all();
+
+        return view('citas.create', compact('pacientes', 'odontologos'));
     }
 
     /**
@@ -31,24 +41,25 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-        'nombre_paciente' => 'required|string|max:255',
-        'nombre_odontologo' => 'required|string|max:255',
-        'fecha' => 'required|date',
-        'hora' => 'required|date_format:H:i',
-    ]);
-    
-    Citas::create($request->all());
 
-    return redirect()->route('citas.index')->with('success', 'Cita creada con éxito.');
+        $request->validate([
+            'id_paciente' => 'required|exists:pacientes,id_paciente',
+            'id_odontologo' => 'required|exists:odontologos,id_odontologo',
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i',
+        ]);
+
+
+        Citas::create($request->all());
+
+        return redirect()->route('citas.index')->with('success', 'Cita creada con éxito.');
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(citas $citas)
+    public function show(Citas $citas)
     {
         //
     }
@@ -56,35 +67,41 @@ class CitasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(citas $cita)
+    public function edit(Citas $cita)
     {
         //
-        return view('citas.edit', compact('cita'));
+        $pacientes = Pacientes::all();
+        $odontologos = Odontologos::all();
+        return view('citas.edit', compact('cita', 'pacientes', 'odontologos'));
+    }
+        /**
+         * Update the specified resource in storage.
+         */
+        public
+        function update(Request $request, Citas $cita)
+        {
+            $request->validate([
+                'id_paciente' => 'required|exists:pacientes,id_paciente',
+                'id_odontologo' => 'required|exists:odontologos,id_odontologo',
+                'fecha' => 'required|date',
+                'hora' => 'required|date_format:H:i',
+            ]);
+
+
+            $cita->update($request->all());
+
+            return redirect()->route('citas.index')->with('success', 'Cita actualizada correctamente.');
+        }
+
+        /**
+         * Remove the specified resource from storage.
+         */
+        public
+        function destroy(citas $cita)
+        {
+            //
+            $cita->delete();
+            return redirect()->route('citas.index')->with('success', 'Cita eliminada correctamente.');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, citas $cita)
-    {
-        //
-        $request->validate([
-            'nombre_paciente' => 'required|string|max:255',
-            'nombre_odontologo' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'hora' => 'required|date_format:H:i',
-        ]);
-        $cita->update($request->all());
-        return redirect()->route('citas.index')->with('success', 'Cita actualizada correctamente.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(citas $cita)
-    {
-        //
-        $cita->delete();
-        return redirect()->route('citas.index')->with('success', 'Cita eliminada correctamente.');
-    }
-}

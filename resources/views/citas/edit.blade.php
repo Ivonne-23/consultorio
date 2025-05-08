@@ -5,17 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <h1 class="alert alert-success">Editar Cita</h1>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <a href="{{ route('citas.index') }}" class="btn btn-success">Regresar</a>
-            </div>
+            <a href="{{ route('citas.index') }}" class="btn btn-success mb-3">Regresar</a>
         </div>
     </div>
 
     @if ($errors->any())
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -27,34 +23,48 @@
         </div>
     @endif
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center">
         <div class="col-6">
             <form action="{{ route('citas.update', $cita->id_cita) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label for="nombre_paciente" class="form-label">Nombre del Paciente</label>
-                    <input type="text" class="form-control" id="nombre_paciente" name="nombre_paciente"
-                           value="{{ old('nombre_paciente', $cita->nombre_paciente) }}" required>
+                    <label for="id_paciente" class="form-label">Paciente</label>
+                    <select name="id_paciente" id="id_paciente" class="form-select" required>
+                        <option value="" disabled>Selecciona un paciente</option>
+                        @foreach($pacientes as $paciente)
+                            <option value="{{ $paciente->id_paciente }}"
+                                {{ $paciente->id_paciente == $cita->id_paciente ? 'selected' : '' }}>
+                                {{ $paciente->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="nombre_odontologo" class="form-label">Nombre del Odontólogo</label>
-                    <input type="text" class="form-control" id="nombre_odontologo" name="nombre_odontologo"
-                           value="{{ old('nombre_odontologo', $cita->nombre_odontologo) }}" required>
+                    <label for="id_odontologo" class="form-label">Odontólogo</label>
+                    <select name="id_odontologo" id="id_odontologo" class="form-select" required>
+                        <option value="" disabled>Selecciona un odontólogo</option>
+                        @foreach($odontologos as $odontologo)
+                            <option value="{{ $odontologo->id_odontologo }}"
+                                {{ $odontologo->id_odontologo == $cita->id_odontologo ? 'selected' : '' }}>
+                                {{ $odontologo->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha"
+                    <input type="date" name="fecha" id="fecha" class="form-control"
                            value="{{ old('fecha', $cita->fecha) }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="hora" class="form-label">Hora</label>
-                    <input type="time" class="form-control" id="hora" name="hora"
-                           value="{{ old('hora', $cita->hora) }}" required>
+                    <input type="time" name="hora" id="hora" class="form-control"
+                           value="{{ old('hora', \Carbon\Carbon::parse($cita->hora)->format('H:i')) }}" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Actualizar Cita</button>
@@ -63,4 +73,3 @@
     </div>
 
 @endsection
-

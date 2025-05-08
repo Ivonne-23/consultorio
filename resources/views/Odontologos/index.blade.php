@@ -22,25 +22,27 @@
         <div class="col-8">
             <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Especialidad</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Especialidad</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach($odontologos as $odontologo)
+                @foreach($odontologos as $odontologo)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $odontologo->nombre }}</td>
                         <td>{{ $odontologo->apellido_paterno }}</td>
                         <td>{{ $odontologo->apellido_materno }}</td>
                         <td>{{ $odontologo->Especialidad }}</td>
-                        <td>{{$odontologos->imagen}}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen de {{ $odontologo->nombre }}" width="100">
+                        </td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
@@ -52,7 +54,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>
