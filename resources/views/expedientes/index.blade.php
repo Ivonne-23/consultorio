@@ -37,7 +37,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
-                    
+
                 </td>
             </tr>
         @endforeach

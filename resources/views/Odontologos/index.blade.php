@@ -1,60 +1,62 @@
-@extends('layouts.menu_dash')
-
-@section('content')
+@extends("layouts.menu_dash")
+@section("content")
     <div class="row justify-content-center">
-        <div class="col-10">
-            <h1 class="alert alert-success">Listado de Expedientes</h1>
-            <a href="{{ route('expedientes.create') }}" class="btn btn-success mb-3">
-                <i class="fas fa-plus"></i> Nuevo Expediente
-            </a>
-
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
+        <div class="col-8">
+            <h1 class="alert alert-success bg-info-subtle">Odontólogos</h1>
+            <a href="{{ route('odontologos.create') }}" class="btn bg-info-subtle">Agregar Odontólogo</a>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8 p-4">
+                <a href="{{ route('home') }}" class="btn bg-info-subtle">Regresar</a>
+            </div>
+        </div>
+        @if(session('success'))
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <p class="alert alert-success">{{ session('success') }}</p>
+                </div>
+            </div>
+        @endif
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Paciente</th>
-                    <th>Odontólogo</th>
-                    <th>Cita</th>
-                    <th>Tratamiento</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Especialidad</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($expedientes as $expediente)
+                @foreach($odontologos as $odontologo)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $expediente->paciente->nombre ?? 'N/A' }}</td>
-                        <td>{{ $expediente->odontologo->nombre  }}</td>
-                        <td>{{ $expediente->cita->fecha ?? 'N/A' }}</td>
-                        <td>{{ $expediente->tratamiento->nombre ?? 'N/A' }}</td>
+                        <th>{{ $loop->iteration }}</th>
+                        <td>{{ $odontologo->nombre }}</td>
+                        <td>{{ $odontologo->apellido_paterno }}</td>
+                        <td>{{ $odontologo->apellido_materno }}</td>
+                        <td>{{ $odontologo->Especialidad }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen de {{ $odontologo->nombre }}" width="100">
+                        </td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('expedientes.edit', $expediente->id_expediente) }}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <form action="{{ route('expedientes.destroy', $expediente->id_expediente) }}" method="POST">
+                                <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
+                                <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este expediente?')">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </button>
+                                    <button class="btn btn-danger" type="submit">Eliminar</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center">No hay expedientes registrados</td>
-                    </tr>
-                @endforelse
+                @endforeach
                 </tbody>
             </table>
-
-            {{ $expedientes->links() }}
         </div>
     </div>
 @endsection
