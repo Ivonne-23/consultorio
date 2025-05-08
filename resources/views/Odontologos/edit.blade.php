@@ -1,8 +1,8 @@
 @extends('layouts.menu_dash')
 
 @section('content')
-    <div class="row justify-content-center ">
-        <div class="col-8 ">
+    <div class="row justify-content-center">
+        <div class="col-8">
             <h1 class="alert alert-success bg-info-subtle">Editar Odontólogo</h1>
         </div>
         <div class="row justify-content-center">
@@ -28,9 +28,10 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-6">
-            <form action="{{ route('odontologos.update', $odontologo->id_odontologo) }}" method="POST">
+            <form action="{{ route('odontologos.update', $odontologo->id_odontologo) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $odontologo->nombre) }}" required>
@@ -49,8 +50,15 @@
                 </div>
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Imagen</label>
-                    <input type="text" class="form-control" id="imagen" name="imagen" value="{{ old('imagen', $odontologo->imagen) }}" required>
+                    @if ($odontologo->imagen)
+                        <div>
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen de {{ $odontologo->nombre }}" width="100">
+                        </div>
+                    @endif
+                    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+                    <small class="text-muted">Deja el campo vacío si no deseas cambiar la imagen.</small>
                 </div>
+
                 <button type="submit" class="btn bg-info-subtle">Actualizar</button>
             </form>
         </div>

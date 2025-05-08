@@ -27,7 +27,7 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-6">
-            <form action="{{ route('odontologos.store') }}" method="POST">
+            <form action="{{ route('odontologos.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -45,10 +45,12 @@
                     <label for="Especialidad" class="form-label">Especialidad</label>
                     <input type="text" class="form-control" id="Especialidad" name="Especialidad" value="{{ old('Especialidad') }}" required>
                 </div>
+
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Imagen</label>
-                    <input type="text" class="form-control" id="imagen" name="imagen" value="{{ old('imagen', $odontologo->imagen) }}" required>
+                    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
                 </div>
+
                 <button type="submit" class="btn bg-info-subtle">Guardar</button>
             </form>
         </div>
