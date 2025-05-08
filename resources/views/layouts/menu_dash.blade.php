@@ -36,15 +36,20 @@
                 <a href="{{ route('citas.index') }}" class="nav-link text-white py-2 {{ request()->routeIs('citas.index') ? 'bg-primary-dark' : '' }}">
                     <i class="bi bi-calendar-check me-2"></i> Citas
                 </a>
-                <a href="#" class="nav-link text-white py-2">
-                    <i class="bi bi-file-earmark-medical me-2"></i> Expedientes
+                <a href="{{ route('expedientes.index') }}" class="nav-link text-white py-2 {{ request()->routeIs('expedientes.*') ? 'bg-primary-dark' : '' }}">
+                <i class="bi bi-journal-medical me-2"></i> Expedientes
                 </a>
                 <a href="{{route('tratamientos.index')}}" class="nav-link text-white py-2 {{ request()->routeIs('tratamientos.*') ? 'bg-primary-dark' : '' }}">
                     <i class="bi bi-clipboard2-pulse me-2"></i> Tratamientos
                 </a>
-                <a href="#" class="nav-link text-white py-2">
-                    <i class="bi bi-bar-chart me-2"></i> Pagos
+                <a href="{{ route('tratamientos_pacientes.index') }}" class="nav-link text-white py-2 {{ request()->routeIs('tratamientos_pacientes.*') ? 'bg-primary-dark' : '' }}">
+                <i class="bi bi-journal-medical me-2"></i> Tratamientos Asignados
                 </a>
+                      
+                <a href="{{ route('pagos.index') }}" class="nav-link text-white py-2 {{ request()->routeIs('pagos.*') ? 'bg-primary-dark' : '' }}">
+                <i class="bi bi-bar-chart me-2"></i> Pagos
+                </a>
+
             </div>
 
             <div class="mt-auto pt-3">

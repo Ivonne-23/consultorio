@@ -21,6 +21,10 @@ Route::resource('citas', App\Http\Controllers\CitasController::class);
 
 Route::resource('tratamientos', App\Http\Controllers\TratamientosController::class);
 
+Route::resource('tratamientos_pacientes', App\Http\Controllers\Tratamientos_pacientesController::class);
+
+Route::resource('pagos', App\Http\Controllers\PagoController::class);
+Route::resource('expedientes', App\Http\Controllers\ExpedientesController::class);
 
 
 
