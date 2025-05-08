@@ -31,12 +31,14 @@ class HomeController extends Controller
 
         $proximasCitas = Citas::join('odontologos', 'odontologos.id_odontologo', '=', 'citas.id_odontologo')
             ->join('pacientes', 'pacientes.id_paciente', '=', 'citas.id_paciente')
+            ->whereNull(['odontologos.deleted_at','pacientes.deleted_at'])
             ->select(
                 'citas.fecha',
                 'citas.hora',
                 'pacientes.nombre as nombre_paciente',
                 'odontologos.nombre as nombre_odontologo'
             )
+
             ->whereDate('citas.fecha', '>=', Carbon::today())
             ->orderBy('citas.fecha')
             ->orderBy('citas.hora')

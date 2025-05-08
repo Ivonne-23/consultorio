@@ -37,7 +37,7 @@
                 @foreach($citas as $cita)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
-                        <td>{{ $cita->paciente->nombre }}</td>
+                        <td>{{ $cita->paciente->nombre ?? 'sin registros' }}</td>
                         <td>{{ $cita->odontologo->nombre }}</td>
                         <td>{{ \Carbon\Carbon::parse($cita->fecha)->format('Y-m-d') }}</td>
                         <td>{{ \Carbon\Carbon::parse($cita->hora)->format('H:i') }}</td>

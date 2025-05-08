@@ -5,7 +5,7 @@
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active position-relative">
-                    <img src="{{ asset('img/imagen1.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 1">
+                    <img src="{{ asset('img/sonrisa.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 1">
                     <div class="carousel-caption position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-50 rounded p-4">
                         <h2 class="display-3 text-white fw-bold">DISEÑANDO SONRISAS</h2>
                         <h4 class="text-white">"Diseña tu sonrisa, Diseña tu vida"</h4>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/sonrisa.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 3">
+                    <img src="{{ asset('img/imagen1.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 3">
                 </div>
             </div>
         </div>
