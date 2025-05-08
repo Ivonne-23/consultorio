@@ -27,7 +27,7 @@ Route::resource('pagos', App\Http\Controllers\PagoController::class);
 Route::resource('expedientes', App\Http\Controllers\ExpedientesController::class);
 
 
-
+Route::resource('welcome', App\Http\Controllers\WelcomeController::class);
 
 
 Auth::routes();

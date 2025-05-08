@@ -1,26 +1,28 @@
 @extends('layouts.menu_page')
-
 @section('content')
-    <div class="container-fluid  ">
+    <div class="container-fluid p-0">
+        <!-- Carrusel -->
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active position-relative">
-                    <img src="{{ asset('img/imagen1.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 1">
+                    <img src="{{ asset('img/imagen1.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 1">
                     <div class="carousel-caption position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-50 rounded p-4">
                         <h2 class="display-3 text-white fw-bold">DISEÑANDO SONRISAS</h2>
                         <h4 class="text-white">"Diseña tu sonrisa, Diseña tu vida"</h4>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/muela.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 2">
+                    <img src="{{ asset('img/muela.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 2">
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/sonrisa.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 3">
+                    <img src="{{ asset('img/sonrisa.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Imagen 3">
                 </div>
             </div>
         </div>
+
+        <!-- Quiénes somos -->
         <div class="row bg-info-subtle text-dark py-5">
             <div class="col text-center">
                 <h3>¿Quiénes somos?</h3>
@@ -53,6 +55,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Información de contacto -->
         <div class="row bg-white text-center text-dark">
             <h2 class="text-center text-cons p-4">Información de contacto</h2>
             <div class="col-4 p-2">
@@ -69,6 +73,7 @@
             </div>
         </div>
 
+        <!-- Correo y horarios -->
         <div class="row">
             <div class="col-4 p-2">
                 <h3><i class="fa-solid fa-envelope"></i> Correo</h3>
@@ -80,9 +85,10 @@
                 <h5 class="text-secondary">Sábados y Domingos: 10:00 - 14:00 y 15:30 - 17:00</h5>
             </div>
         </div>
+
+        <!-- Footer -->
         <div class="row p-2 bg-black">
             <p class="text-white">&copy; 2025 Sonrisa Perfecta | DiseñandoSonrisas.com</p>
         </div>
     </div>
 @endsection
-
