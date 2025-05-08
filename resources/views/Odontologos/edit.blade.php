@@ -1,13 +1,13 @@
 @extends('layouts.menu_dash')
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-8">
-            <h1 class="alert alert-success">Editar Odontólogo</h1>
+    <div class="row justify-content-center ">
+        <div class="col-8 ">
+            <h1 class="alert alert-success bg-info-subtle">Editar Odontólogo</h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-8">
-                <a href="{{ route('odontologos.index') }}" class="btn btn-primary">Regresar</a>
+                <a href="{{ route('odontologos.index') }}" class="btn bg-info-subtle">Regresar</a>
             </div>
         </div>
     </div>
@@ -47,7 +47,11 @@
                     <label for="Especialidad" class="form-label">Especialidad</label>
                     <input type="text" class="form-control" id="Especialidad" name="Especialidad" value="{{ old('Especialidad', $odontologo->Especialidad) }}" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="text" class="form-control" id="imagen" name="imagen" value="{{ old('imagen', $odontologo->imagen) }}" required>
+                </div>
+                <button type="submit" class="btn bg-info-subtle">Actualizar</button>
             </form>
         </div>
     </div>

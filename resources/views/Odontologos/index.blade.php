@@ -2,12 +2,12 @@
 @section("content")
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="alert alert-success">Odontólogos</h1>
-            <a href="{{ route('odontologos.create') }}" class="btn btn-success">Agregar Odontólogo</a>
+            <h1 class="alert alert-success bg-info-subtle">Odontólogos</h1>
+            <a href="{{ route('odontologos.create') }}" class="btn bg-info-subtle">Agregar Odontólogo</a>
         </div>
         <div class="row justify-content-center">
             <div class="col-8 p-4">
-                <a href="{{ route('home') }}" class="btn btn-success">Regresar</a>
+                <a href="{{ route('home') }}" class="btn bg-info-subtle">Regresar</a>
             </div>
         </div>
         @if(session('success'))
@@ -28,6 +28,7 @@
                         <th>Apellido Paterno</th>
                         <th>Apellido Materno</th>
                         <th>Especialidad</th>
+                        <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                         <td>{{ $odontologo->apellido_paterno }}</td>
                         <td>{{ $odontologo->apellido_materno }}</td>
                         <td>{{ $odontologo->Especialidad }}</td>
+                        <td>{{$odontologos->imagen}}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>

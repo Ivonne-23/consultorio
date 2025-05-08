@@ -14,6 +14,7 @@ class Odontologos extends Model
         'nombre',
         'apellido_paterno',
         'apellido_materno',
-        'Especialidad'
+        'Especialidad',
+        'imagen'
     ];
 }

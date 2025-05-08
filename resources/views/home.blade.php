@@ -1,11 +1,8 @@
 @extends('layouts.menu_dash')
 @section('content')
     <div class="container-fluid p-0">
-            <!-- Contenido principal -->
             <div class="col-md-10 p-4">
                 <h2 class="mb-4"><i class="bi bi-speedometer2 me-2"></i> Panel de Control</h2>
-
-                <!-- Tarjetas resumen -->
                 <div class="row mb-4">
                     <div class="col-md-3 mb-3">
                         <div class="card bg-info text-white h-100">
@@ -44,8 +41,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Notificaciones y Citas -->
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
@@ -79,7 +74,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-header bg-primary text-white">

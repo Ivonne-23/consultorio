@@ -1,8 +1,7 @@
 @extends('layouts.menu_page')
 
 @section('content')
-    <div class="container-fluid p-0">
-        <!-- Carrusel -->
+    <div class="container-fluid  ">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active position-relative">
@@ -12,7 +11,6 @@
                         <h4 class="text-white">"Diseña tu sonrisa, Diseña tu vida"</h4>
                     </div>
                 </div>
-
                 <div class="carousel-item">
                     <img src="{{ asset('img/muela.jpg') }}" class="d-block w-100 vh-100 object-fit-cover" alt="Imagen 2">
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
@@ -23,8 +21,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Sección sobre nosotros -->
         <div class="row bg-info-subtle text-dark py-5">
             <div class="col text-center">
                 <h3>¿Quiénes somos?</h3>
@@ -32,8 +28,6 @@
                     con la salud bucal de las personas, ofreciendo una amplia gama de servicios para cuidar tu sonrisa.</h4>
             </div>
         </div>
-
-        <!-- Sección de servicios -->
         <div class="container my-5">
             <h2 class="text-center text-dark mb-4">¿Qué ofrecemos?</h2>
             <div class="row justify-content-center">
@@ -59,8 +53,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Sección de contacto -->
         <div class="row bg-white text-center text-dark">
             <h2 class="text-center text-cons p-4">Información de contacto</h2>
             <div class="col-4 p-2">
@@ -88,8 +80,6 @@
                 <h5 class="text-secondary">Sábados y Domingos: 10:00 - 14:00 y 15:30 - 17:00</h5>
             </div>
         </div>
-
-        <!-- Pie de página -->
         <div class="row p-2 bg-black">
             <p class="text-white">&copy; 2025 Sonrisa Perfecta | DiseñandoSonrisas.com</p>
         </div>
