@@ -55,7 +55,7 @@
                                     <table class="table table-striped table-hover mb-0">
                                         <thead class="table-light">
                                         <tr>
-                                            <th>Fecha & Hora</th>
+                                            <th>Fecha y Hora</th>
                                             <th>Paciente</th>
                                             <th>Odontólogo</th>
                                         </tr>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- End Panel de Control -->
+            </div>
         </div>
     </div>
 
@@ -110,26 +110,22 @@
         .card:hover {
             transform: translateY(-5px);
         }
-
-        /* Asegura que la tabla se ajuste bien al espacio */
         .table-responsive {
-            max-height: 400px; /* Añade un alto fijo para que no ocupe demasiado espacio */
-            overflow-y: auto;  /* Habilita el desplazamiento vertical si hay muchas filas */
+            max-height: 400px;
+            overflow-y: auto;
         }
-
-        /* Ajustes de diseño para asegurar que todo sea responsivo */
         .col-md-4, .col-md-12 {
             padding: 15px;
         }
 
         @media (max-width: 767px) {
             .col-md-4 {
-                flex: 0 0 100%;  /* En pantallas pequeñas, cada tarjeta ocupará todo el ancho */
+                flex: 0 0 100%;
                 max-width: 100%;
             }
 
             .col-md-12 {
-                flex: 0 0 100%; /* Asegura que las citas ocupen todo el ancho */
+                flex: 0 0 100%;
                 max-width: 100%;
             }
         }

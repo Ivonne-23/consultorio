@@ -4,60 +4,69 @@ namespace App\Http\Controllers;
 
 use App\Models\Expediente;
 use Illuminate\Http\Request;
+use App\Models\Paciente;
+use App\Models\Odontologo;
+use App\Models\Cita;
+use App\Models\Tratamiento;
 
 class ExpedientesController extends Controller
 {
     public function index()
     {
-        $expedientes = Expediente::paginate(10);
-        return view('expedientes.index', compact('expedientes'));
+        $expedientes = Expediente::with('paciente', 'odontologo', 'cita', 'tratamiento')->get();
+        $pacientes = Paciente::all(); // Cargar los pacientes para usarlos en la vista
+
+        return view('expedientes.index', compact('expedientes', 'pacientes'));
     }
 
     public function create()
     {
-        return view('expedientes.create');
+        $pacientes = Paciente::all();
+        $odontologos = Odontologo::all();
+        $citas = Cita::all();
+        $tratamientos = Tratamiento::all();
+
+        return view('expedientes.create', compact('pacientes', 'odontologos', 'citas', 'tratamientos'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'id_paciente' => 'required|integer',
-            'id_odontologo' => 'required|integer',
-            'id_cita' => 'required|integer',
-            'id_tratamiento' => 'required|integer',
+            'id_paciente' => 'nullable|exists:pacientes,id',
+            'id_odontologo' => 'nullable|exists:odontologos,id',
+            'id_cita' => 'nullable|exists:citas,id',
+            'id_tratamiento' => 'nullable|exists:tratamientos,id',
         ]);
 
         Expediente::create($request->all());
-
         return redirect()->route('expedientes.index')->with('success', 'Expediente creado exitosamente.');
     }
 
-    public function edit($id)
+    public function edit(Expediente $expediente)
     {
-        $expediente = Expediente::findOrFail($id);
-        return view('expedientes.edit', compact('expediente'));
+        $pacientes = Paciente::all();
+        $odontologos = Odontologo::all();
+        $citas = Cita::all();
+        $tratamientos = Tratamiento::all();
+        return view('expedientes.edit', compact('expediente', 'pacientes', 'odontologos', 'citas', 'tratamientos'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Expediente $expediente)
     {
         $request->validate([
-            'id_paciente' => 'required|integer',
-            'id_odontologo' => 'required|integer',
-            'id_cita' => 'required|integer',
-            'id_tratamiento' => 'required|integer',
+            'id_paciente' => 'nullable|exists:pacientes,id',
+            'id_odontologo' => 'nullable|exists:odontologos,id',
+            'id_cita' => 'nullable|exists:citas,id',
+            'id_tratamiento' => 'nullable|exists:tratamientos,id',
         ]);
 
-        $expediente = Expediente::findOrFail($id);
         $expediente->update($request->all());
-
-        return redirect()->route('expedientes.index')->with('success', 'Expediente actualizado correctamente.');
+        return redirect()->route('expedientes.index')->with('success', 'Expediente actualizado exitosamente.');
     }
 
-    public function destroy($id)
+    public function destroy(Expediente $expediente)
     {
-        $expediente = Expediente::findOrFail($id);
         $expediente->delete();
-
-        return redirect()->route('expedientes.index')->with('success', 'Expediente eliminado correctamente.');
+        return redirect()->route('expedientes.index')->with('success', 'Expediente eliminado exitosamente.');
     }
 }
