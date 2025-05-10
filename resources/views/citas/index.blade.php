@@ -1,13 +1,14 @@
 @extends("layouts.menu_dash")
+
 @section("content")
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="alert alert-success bg-info-subtle">Odontólogos</h1>
-            <a href="{{ route('odontologos.create') }}" class="btn bg-info-subtle">Agregar Odontólogo</a>
+            <h1 class="alert alert-success">Citas</h1>
+            <a href="{{ route('citas.create') }}" class="btn btn-success">Agregar Cita</a>
         </div>
         <div class="row justify-content-center">
             <div class="col-8 p-4">
-                <a href="{{ route('home') }}" class="btn bg-info-subtle">Regresar</a>
+                <a href="{{ route('home') }}" class="btn btn-success">Regresar</a>
             </div>
         </div>
         @if(session('success'))
@@ -18,35 +19,32 @@
             </div>
         @endif
     </div>
+
     <div class="row justify-content-center mt-5">
         <div class="col-8">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Especialidad</th>
-                    <th>Imagen</th>
+                    <th>Nombre del Paciente</th>
+                    <th>Nombre del Odontólogo</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($odontologos as $odontologo)
+                @foreach($citas as $cita)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
-                        <td>{{ $odontologo->nombre }}</td>
-                        <td>{{ $odontologo->apellido_paterno }}</td>
-                        <td>{{ $odontologo->apellido_materno }}</td>
-                        <td>{{ $odontologo->Especialidad }}</td>
-                        <td>
-                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen de {{ $odontologo->nombre }}" width="100">
-                        </td>
+                        <td>{{ $cita->paciente->nombre ?? 'sin registros' }}</td>
+                        <td>{{ $cita->odontologo->nombre }}</td>
+                        <td>{{ \Carbon\Carbon::parse($cita->fecha)->format('Y-m-d') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($cita->hora)->format('H:i') }}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
-                                <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
+                                <a class="btn btn-warning" href="{{ route('citas.edit', $cita->id_cita) }}">Editar</a>
+                                <form action="{{ route('citas.destroy', $cita->id_cita) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Eliminar</button>

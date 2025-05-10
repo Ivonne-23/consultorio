@@ -12,9 +12,9 @@ class PacientesController extends Controller
      */
     public function index()
     {
-        //
-        $pacientes= pacientes::all();
-        return view('Pacientes.index',compact('pacientes'));
+
+        $pacientes= Pacientes::all();
+        return view('pacientes.index',compact('pacientes'));
 
     }
 
@@ -24,7 +24,7 @@ class PacientesController extends Controller
     public function create()
     {
         //
-        return view('Pacientes.create');
+        return view('pacientes.create');
     }
 
     /**
@@ -50,21 +50,22 @@ class PacientesController extends Controller
     public function show(pacientes $pacientes)
     {
         //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(pacientes $pacientes)
+    public function edit(pacientes $paciente)
     {
-        //
-        return view('pacientes.edit', compact('pacientes'));
+        return view('pacientes.edit', compact('paciente'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, pacientes $pacientes)
+    public function update(Request $request, pacientes $paciente)
     {
         //
         $request->validate([
@@ -74,17 +75,18 @@ class PacientesController extends Controller
             'direccion' => 'required|string|max:200',
             'telefono' => 'required|string|max:200',
         ]);
-        $pacientes->update($request->all());
-        return redirect()->route('pacientes.index')->with('success','Paciente actualizado con exito');
+
+        $paciente->update($request->all());
+
+        return redirect()->route('pacientes.index')->with('success', 'Paciente actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pacientes $pacientes)
+    public function destroy(pacientes $paciente)
     {
-        //
-        $pacientes->delete();
-        return redirect()->route('pacientes.index')->with('success','Paciente eliminado con exito');
+        $paciente->delete();
+        return redirect()->route('pacientes.index')->with('success', 'Paciente eliminado correctamente');
     }
 }
