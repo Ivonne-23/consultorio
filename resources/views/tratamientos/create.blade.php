@@ -20,8 +20,9 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{ route('tratamientos.store') }}" method="POST">
-                    @csrf
+                <form action="{{ route('tratamientos.store') }}" method="POST" enctype="multipart/form-data">
+
+                @csrf
 
                     <div class="mb-3">
                         <label for="nombre_tratamiento" class="form-label">Nombre del Tratamiento</label>
@@ -39,6 +40,10 @@
                         <label for="costo" class="form-label">Costo ($)</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="costo" name="costo"
                                value="{{ old('costo') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">

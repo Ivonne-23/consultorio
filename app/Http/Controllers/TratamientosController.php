@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tratamiento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TratamientosController extends Controller
 {
@@ -20,17 +21,24 @@ class TratamientosController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre_tratamiento' => 'required|string|max:200',
-            'descripcion' => 'required|string|max:50',
+            'descripcion' => 'required|string|max:255',
             'costo' => 'required|numeric|min:0',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Tratamiento::create($request->all());
-        return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado con éxito');
-    }
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+            $validatedData['imagen'] = $imagenPath;
+        }
 
-    public function show(Tratamiento $tratamiento)
+        Tratamiento::create($validatedData); // Usar datos validados con ruta correcta
+
+        return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado con éxito');
+
+    }
+        public function show(Tratamiento $tratamiento)
     {
         return view('tratamientos.show', compact('tratamiento'));
     }
@@ -42,15 +50,26 @@ class TratamientosController extends Controller
 
     public function update(Request $request, Tratamiento $tratamiento)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre_tratamiento' => 'required|string|max:200',
             'descripcion' => 'required|string|max:50',
             'costo' => 'required|numeric|min:0',
+            'imagen'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $tratamiento->update($request->all());
+        if ($request->hasFile('imagen')) {
+            if ($tratamiento->imagen) {
+                Storage::disk('public')->delete($tratamiento->imagen);
+            }
+            $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+            $validatedData['imagen'] = $imagenPath;
+        }
+
+        $tratamiento->update($validatedData);
+
         return redirect()->route('tratamientos.index')->with('success', 'Tratamiento actualizado con éxito');
     }
+
 
     public function destroy(Tratamiento $tratamiento)
     {

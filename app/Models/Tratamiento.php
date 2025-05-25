@@ -14,7 +14,9 @@ class Tratamiento extends Model
     protected $fillable = [
         'nombre_tratamiento',
         'descripcion',
-        'costo'
+        'costo',
+        'imagen'
+
     ];
     protected $dates = ['deleted_at'];
 

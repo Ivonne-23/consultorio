@@ -32,15 +32,12 @@ class OdontologosController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para imagen
         ]);
 
-        // Verificar si hay una imagen y guardarla
         if ($request->hasFile('imagen')) {
-            // Almacenar la imagen en el directorio 'public/imagenes'
             $imagenPath = $request->file('imagen')->store('imagenes', 'public');
-            // Agregar la ruta de la imagen al array de datos validados
+
             $validatedData['imagen'] = $imagenPath;
         }
 
-        // Crear el odontólogo con los datos validados
         Odontologos::create($validatedData);
 
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo creado con éxito.');

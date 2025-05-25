@@ -15,7 +15,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $odontologos = Odontologos::all();
-        return view('welcome', compact('odontologos'));
+        $tratamientos = Tratamiento::all();
+        return view('welcome', compact('odontologos','tratamientos'));
+
 
     }
 
@@ -38,9 +40,11 @@ class WelcomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(welcome $welcome)
+    public function show($id)
     {
-        //
+        $tratamiento = \App\Models\Tratamiento::where('id_tratamiento', $id)->firstOrFail();
+
+        return view('desc_tratamiento', compact('tratamiento'));
     }
 
     /**

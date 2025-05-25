@@ -20,7 +20,7 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{ route('tratamientos.update', $tratamiento->id_tratamiento) }}" method="POST">
+                <form action="{{ route('tratamientos.update', $tratamiento->id_tratamiento) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -40,6 +40,16 @@
                         <label for="costo" class="form-label">Costo ($)</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="costo" name="costo"
                                value="{{ old('costo', $tratamiento->costo) }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        @if ($tratamiento->imagen)
+                            <div>
+                                <img src="{{ asset('storage/' . $tratamiento->imagen) }}" alt="Imagen de {{ $tratamiento->nombre }}" width="100">
+                            </div>
+                        @endif
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+                        <small class="text-muted">Deja el campo vacío si no deseas cambiar la imagen.</small>
                     </div>
 
                     <button type="submit" class="btn btn-warning">

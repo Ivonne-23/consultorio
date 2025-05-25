@@ -6,10 +6,7 @@
             <!-- Panel de Control -->
             <div class="col-md-12 p-4">
                 <h2 class="mb-4 text-center"> Panel de Control</h2>
-
-                <!-- Fila de estadísticas (Odontólogos, Pacientes, Citas Hoy) -->
                 <div class="row mb-4">
-                    <!-- Odontólogos -->
                     <div class="col-md-4 mb-3">
                         <div class="card bg-info text-white h-100">
                             <div class="card-body text-center py-4">
@@ -19,8 +16,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Pacientes -->
                     <div class="col-md-4 mb-3">
                         <div class="card bg-info text-white h-100">
                             <div class="card-body text-center py-4">
@@ -42,8 +37,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Fila de Próximas Citas -->
                 <div class="row">
                     <div class="col-md-12 mb-4">
                         <div class="card h-100">

@@ -100,8 +100,6 @@
         </div>
     </div>
 </section>
-
-<!-- Sección de Contacto -->
 <section id="contacto" class="contacto text-center">
     <h2 class="mb-4">Agenda tu Cita</h2>
     <p>Déjanos tus datos y nos pondremos en contacto contigo.</p>

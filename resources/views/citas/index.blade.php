@@ -22,7 +22,7 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-8">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover text-center">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -37,14 +37,22 @@
                 @foreach($citas as $cita)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
-                        <td>{{ $cita->paciente->nombre ?? 'sin registros' }}</td>
-                        <td>{{ $cita->odontologo->nombre }}</td>
+                        <td>
+                            {{ $cita->paciente->nombre ?? 'Sin registros' }}
+                            {{ $cita->paciente->apellido_paterno ?? '' }}
+                            {{ $cita->paciente->apellido_materno ?? '' }}
+                        </td>
+                        <td>
+                            {{ $cita->odontologo->nombre ?? '' }}
+                            {{ $cita->odontologo->apellido_paterno ?? '' }}
+                            {{ $cita->odontologo->apellido_materno ?? '' }}
+                        </td>
                         <td>{{ \Carbon\Carbon::parse($cita->fecha)->format('Y-m-d') }}</td>
                         <td>{{ \Carbon\Carbon::parse($cita->hora)->format('H:i') }}</td>
                         <td>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 justify-content-center">
                                 <a class="btn btn-warning" href="{{ route('citas.edit', $cita->id_cita) }}">Editar</a>
-                                <form action="{{ route('citas.destroy', $cita->id_cita) }}" method="POST">
+                                <form action="{{ route('citas.destroy', $cita->id_cita) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar esta cita?');">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Eliminar</button>
@@ -55,6 +63,9 @@
                 @endforeach
                 </tbody>
             </table>
+            @if($citas->isEmpty())
+                <p class="text-center">No hay citas registradas.</p>
+            @endif
         </div>
     </div>
 @endsection

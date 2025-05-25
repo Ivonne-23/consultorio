@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class welcome extends Model
 {
     //
+
     protected $table = 'odontologos';
     protected $fillable = ['nombre',
         'apellido_paterno',
@@ -17,4 +18,5 @@ class welcome extends Model
     {
         return $this->belongsTo(Odontologo::class);
     }
+
 }

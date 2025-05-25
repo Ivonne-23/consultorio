@@ -21,16 +21,22 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Costo</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($tratamientos as $tratamiento)
-                <tr>
+
+                    <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $tratamiento->nombre_tratamiento }}</td>
                     <td>{{ Str::limit($tratamiento->descripcion, 30) }}</td>
                     <td>{{ $tratamiento->costo_formateado }}</td>
+                    <td>
+                        <img src="{{ asset('storage/' . $tratamiento->imagen) }}" alt="Imagen{{ $tratamiento->nombre }}" width="100">
+
+                    </td>
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('tratamientos.edit', $tratamiento->id_tratamiento) }}"

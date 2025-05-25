@@ -41,7 +41,7 @@
                         <td>{{ $odontologo->apellido_materno }}</td>
                         <td>{{ $odontologo->Especialidad }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen de {{ $odontologo->nombre }}" width="100">
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen {{ $odontologo->nombre }}" width="100">
                         </td>
                         <td>
                             <div class="d-flex gap-2">

@@ -41,7 +41,7 @@
                                  alt="Imagen de {{ $odontologo->nombre }}"
                                  style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px;">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $odontologo->nombre }} {{ $odontologo->apellido_paterno }}</h5>
+                                <h5 class="card-title">{{ $odontologo->nombre }} {{ $odontologo->apellido_paterno }} {{$odontologo->apellido_materno}}</h5>
                                 <p class="card-text">{{ $odontologo->Especialidad ?? 'Sin especialidad' }}</p>
                             </div>
                         </div>
@@ -52,33 +52,21 @@
 
         </div>
 
-        <div class="container my-5">
-            <h2 class="text-center text-dark mb-4">¿Qué ofrecemos?</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Diseño de sonrisa</h5>
-                </div>
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Ortodoncia invisible</h5>
-                </div>
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Endodoncia</h5>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Limpieza dental</h5>
-                </div>
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Coronas dentales</h5>
-                </div>
-                <div class="col-md-3 m-2 card text-white bg-primary p-4">
-                    <h5 class="text-center">Resina dental</h5>
-                </div>
-            </div>
+    <div class="container my-5">
+        <h2 class="text-center text-dark mb-4">¿Qué ofrecemos?</h2>
+        <div class="row justify-content-center">
+            @foreach($tratamientos as $tratamiento)
+                <a href="{{ route('tratamientos.show', $tratamiento->id_tratamiento) }}">
+                class="col-md-3 m-2 card text-white bg-primary p-4 text-decoration-none text-center"
+                   style="cursor:pointer;">
+                    <h5>{{ $tratamiento->nombre_tratamiento }}</h5>
+                </a>
+            @endforeach
         </div>
+    </div>
 
-        <!-- Información de contacto -->
+
+    <!-- Información de contacto -->
         <div class="row bg-white text-center text-dark">
             <h2 class="text-center text-cons p-4">Información de contacto</h2>
             <div class="col-4 p-2">
