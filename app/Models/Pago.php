@@ -11,13 +11,21 @@ class Pago extends Model
 
     protected $table = 'pago';
     protected $primaryKey = 'id_pago';
+
     protected $fillable = [
         'monto',
         'forma_pago',
-        'fecha_pago'
+        'fecha_pago',
+        'id_cita',
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function cita()
+    {
+        // Aquí importa correctamente el modelo citas.php
+        return $this->belongsTo(citas::class, 'id_cita', 'id_cita');
+    }
 
     public function getMontoFormateadoAttribute()
     {

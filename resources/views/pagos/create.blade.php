@@ -33,9 +33,21 @@
                         <input type="date" class="form-control" id="fecha_pago" name="fecha_pago" value="{{ old('fecha_pago') }}" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Guardar
-                    </button>
+                    <div class="mb-3">
+                        <label for="id_cita" class="form-label">Cita a pagar (Paciente)</label>
+                        <select class="form-control" id="id_cita" name="id_cita" required>
+                            <option value="">Seleccione una cita</option>
+                            @foreach($citas as $cita)
+                                <option value="{{ $cita->id_cita }}">
+                                    {{ $cita->paciente->nombre ?? '' }}
+                                    {{ $cita->paciente->apellido_paterno ?? '' }}
+                                    {{ $cita->paciente->apellido_materno ?? '' }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </form>
             </div>
         </div>

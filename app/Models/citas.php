@@ -21,11 +21,6 @@ class citas extends Model
 
     public function paciente()
     {
-        return $this->belongsTo(Pacientes::class, 'id_paciente');
-    }
-
-    public function odontologo()
-    {
-        return $this->belongsTo(Odontologos::class, 'id_odontologo');
+        return $this->belongsTo(Pacientes::class, 'id_paciente', 'id_paciente');
     }
 }
