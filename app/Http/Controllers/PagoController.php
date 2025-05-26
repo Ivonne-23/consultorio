@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\citas;
 use Illuminate\Http\Request;
 
 class PagoController extends Controller
 {
     public function index()
     {
-        $pagos = Pago::paginate(10);
+        // Cargamos citas con paciente para mostrar nombre en la tabla
+        $pagos = Pago::with('cita.paciente')->paginate(10);
+
         return view('pagos.index', compact('pagos'));
     }
 
     public function create()
     {
-        return view('pagos.create');
+        $citas = citas::with('paciente')->get();
+
+        return view('pagos.create', compact('citas'));
     }
 
     public function store(Request $request)
@@ -24,6 +29,7 @@ class PagoController extends Controller
             'monto' => 'required|numeric|min:0',
             'forma_pago' => 'required|string|max:50',
             'fecha_pago' => 'required|date',
+            'id_cita' => 'required|exists:citas,id_cita',
         ]);
 
         Pago::create($request->all());
@@ -33,7 +39,9 @@ class PagoController extends Controller
 
     public function edit(Pago $pago)
     {
-        return view('pagos.edit', compact('pago'));
+        $citas = citas::with('paciente')->get();
+
+        return view('pagos.edit', compact('pago', 'citas'));
     }
 
     public function update(Request $request, Pago $pago)
@@ -42,6 +50,7 @@ class PagoController extends Controller
             'monto' => 'required|numeric|min:0',
             'forma_pago' => 'required|string|max:50',
             'fecha_pago' => 'required|date',
+            'id_cita' => 'required|exists:citas,id_cita',
         ]);
 
         $pago->update($request->all());

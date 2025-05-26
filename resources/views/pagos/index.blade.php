@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <h1 class="alert alert-success">Listado de Pagos</h1>
         <a href="{{ route('pagos.create') }}" class="btn btn-success mb-3">
             <i class="fas fa-plus"></i> Nuevo Pago
@@ -19,6 +19,7 @@
                     <th>Monto</th>
                     <th>Forma de Pago</th>
                     <th>Fecha</th>
+                    <th>Cita a pagar (Paciente)</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -29,6 +30,11 @@
                     <td>{{ $pago->monto_formateado }}</td>
                     <td>{{ $pago->forma_pago }}</td>
                     <td>{{ $pago->fecha_pago }}</td>
+                    <td>
+                        {{ $pago->cita && $pago->cita->paciente
+                            ? $pago->cita->paciente->nombre . ' ' . $pago->cita->paciente->apellido_paterno . ' ' . $pago->cita->paciente->apellido_materno
+                            : 'Sin asignar' }}
+                    </td>
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('pagos.edit', $pago->id_pago) }}" class="btn btn-warning btn-sm">
@@ -46,7 +52,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="text-center">No hay pagos registrados</td>
+                    <td colspan="6" class="text-center">No hay pagos registrados</td>
                 </tr>
                 @endforelse
             </tbody>
