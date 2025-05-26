@@ -12,14 +12,12 @@ class PagoController extends Controller
     {
         // Cargamos citas con paciente para mostrar nombre en la tabla
         $pagos = Pago::with('cita.paciente')->paginate(10);
-
         return view('pagos.index', compact('pagos'));
     }
 
     public function create()
     {
         $citas = citas::with('paciente')->get();
-
         return view('pagos.create', compact('citas'));
     }
 
@@ -40,7 +38,6 @@ class PagoController extends Controller
     public function edit(Pago $pago)
     {
         $citas = citas::with('paciente')->get();
-
         return view('pagos.edit', compact('pago', 'citas'));
     }
 

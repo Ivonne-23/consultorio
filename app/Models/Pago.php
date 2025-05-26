@@ -11,7 +11,6 @@ class Pago extends Model
 
     protected $table = 'pago';
     protected $primaryKey = 'id_pago';
-
     protected $fillable = [
         'monto',
         'forma_pago',
