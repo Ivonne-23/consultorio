@@ -42,10 +42,17 @@ class WelcomeController extends Controller
      */
     public function show($id)
     {
-        $tratamiento = \App\Models\Tratamiento::where('id_tratamiento', $id)->firstOrFail();
 
-        return view('desc_tratamiento', compact('tratamiento'));
+        // Buscar el tratamiento por su ID
+        $tratamiento = Tratamiento::findOrFail($id);
+
+        // Retornar la vista tratamientos/show.blade.php con el tratamiento
+        return view('tratamientos.show', compact('tratamiento'));
+
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

@@ -38,7 +38,7 @@ class TratamientosController extends Controller
         return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado con éxito');
 
     }
-        public function show(Tratamiento $tratamiento)
+    public function show(Tratamiento $tratamiento)
     {
         return view('tratamientos.show', compact('tratamiento'));
     }

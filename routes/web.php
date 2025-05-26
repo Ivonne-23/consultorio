@@ -39,4 +39,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/', [WelcomeController::class, 'index']);
-Route::get('/tratamientos/{id}', [WelcomeController::class, 'show'])->name('tratamientos.show');
+Route::get('/tratamientos/{id}', [TratamientoController::class, 'show'])->name('tratamientos.show');
