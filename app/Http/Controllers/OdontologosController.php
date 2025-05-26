@@ -3,92 +3,80 @@
 namespace App\Http\Controllers;
 
 use App\Models\Odontologos;
+use App\Models\pacientes;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
 
 class OdontologosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-
-       $odontologos= Odontologos::all();
-        return view('Odontologos.index',compact('odontologos'));
+        $odontologos = Odontologos::all();
+        return view('odontologos.index', compact('odontologos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
-        return view('Odontologos.create');
+        return view('odontologos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-        $request->validate([
+        // Validar los datos
+        $validatedData = $request->validate([
             'nombre' => 'required|string|max:200',
             'apellido_paterno' => 'required|string|max:200',
             'apellido_materno' => 'required|string|max:200',
-            'especialidad' => 'required|string|max:200',
+            'Especialidad' => 'required|string|max:50',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para imagen
         ]);
 
-        // Crear nuevo odontólogo
-        Odontologo::create($request->all());
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+
+            $validatedData['imagen'] = $imagenPath;
+        }
+
+        Odontologos::create($validatedData);
 
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo creado con éxito.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Odontologos $odontologos)
     {
-        //
+        return view('odontologos.show', compact('odontologos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Odontologos $odontologo)
     {
-
-         return view('odontologos.edit', compact('odontologo'));
-
+        return view('odontologos.edit', compact('odontologo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Odontologos $odontologo)
     {
-        //
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre' => 'required|string|max:200',
             'apellido_paterno' => 'required|string|max:200',
             'apellido_materno' => 'required|string|max:200',
-            'especialidad' => 'required|string|max:200',
+            'Especialidad' => 'required|string|max:50',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // Actualizar odontólogo
-        $odontologo->update($request->all());
+        if ($request->hasFile('imagen')) {
+            if ($odontologo->imagen) {
+                Storage::delete('public/' . $odontologo->imagen);
+            }
+            $imagenPath = $request->file('imagen')->store('imagenes', 'public');
+            $validatedData['imagen'] = $imagenPath;
+        }
+        $odontologo->update($validatedData);
 
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo actualizado con éxito.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Odontologos $odontologo)
     {
         $odontologo->delete();
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo eliminado con éxito.');
     }
-
 }

@@ -1,21 +1,23 @@
-@extends("layouts.app")
-
+@extends("layouts.menu_dash")
 @section("content")
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="alert alert-success">Odontólogos</h1>
-            <a href="{{ route('odontologos.create') }}" class="btn btn-success">Agregar Odontólogo</a>
+            <h1 class="alert alert-success bg-info-subtle">Odontólogos</h1>
+            <a href="{{ route('odontologos.create') }}" class="btn bg-info-subtle">Agregar Odontólogo</a>
         </div>
-    </div>
-
-    @if(session('success'))
         <div class="row justify-content-center">
-            <div class="col-4">
-                <p class="alert alert-success">{{ session('success') }}</p>
+            <div class="col-8 p-4">
+                <a href="{{ route('home') }}" class="btn bg-info-subtle">Regresar</a>
             </div>
         </div>
-    @endif
-
+        @if(session('success'))
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <p class="alert alert-success">{{ session('success') }}</p>
+                </div>
+            </div>
+        @endif
+    </div>
     <div class="row justify-content-center mt-5">
         <div class="col-8">
             <table class="table table-striped table-hover">
@@ -26,6 +28,7 @@
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>Especialidad</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -36,14 +39,19 @@
                         <td>{{ $odontologo->nombre }}</td>
                         <td>{{ $odontologo->apellido_paterno }}</td>
                         <td>{{ $odontologo->apellido_materno }}</td>
-                        <td>{{ $odontologo->especialidad }}</td>
+                        <td>{{ $odontologo->Especialidad }}</td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
-                            <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
-                            @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Eliminar</button>
-                            </form>
+                            <img src="{{ asset('storage/' . $odontologo->imagen) }}" alt="Imagen {{ $odontologo->nombre }}" width="100">
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-warning" href="{{ route('odontologos.edit', $odontologo->id_odontologo) }}">Editar</a>
+                                <form action="{{ route('odontologos.destroy', $odontologo->id_odontologo) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

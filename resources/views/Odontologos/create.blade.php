@@ -1,12 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.menu_dash')
+
 @section('content')
     <div class="row justify-content-center">
         <div class="col-8">
-            <h1 class="alert alert-success">Agregar Odontólogo</h1>
+            <h1 class="alert alert-success bg-info-subtle">Agregar Odontólogo</h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-8">
-                <a href="{{ route('odontologos.index') }}" class="btn btn-primary">Regresar</a>
+                <a href="{{ route('odontologos.index') }}" class="btn btn bg-info-subtle">Regresar</a>
             </div>
         </div>
     </div>
@@ -26,7 +27,7 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-6">
-            <form action="{{ route('odontologos.store') }}" method="POST">
+            <form action="{{ route('odontologos.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -41,12 +42,17 @@
                     <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text" class="form-control" id="especialidad" name="especialidad" value="{{ old('especialidad') }}" required>
+                    <label for="Especialidad" class="form-label">Especialidad</label>
+                    <input type="text" class="form-control" id="Especialidad" name="Especialidad" value="{{ old('Especialidad') }}" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="btn bg-info-subtle">Guardar</button>
             </form>
         </div>
     </div>
 @endsection
-
