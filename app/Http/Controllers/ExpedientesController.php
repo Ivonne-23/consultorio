@@ -15,7 +15,6 @@ class ExpedientesController extends Controller
     {
 
         $citas = Citas::with(['paciente', 'odontologo'])->get();
-
         return view('expedientes.index', compact('citas'));
     }
     public function show($id)
