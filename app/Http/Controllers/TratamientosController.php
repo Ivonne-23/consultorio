@@ -34,7 +34,6 @@ class TratamientosController extends Controller
         }
 
         Tratamiento::create($validatedData); // Usar datos validados con ruta correcta
-
         return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado con éxito');
 
     }
@@ -66,7 +65,6 @@ class TratamientosController extends Controller
         }
 
         $tratamiento->update($validatedData);
-
         return redirect()->route('tratamientos.index')->with('success', 'Tratamiento actualizado con éxito');
     }
 

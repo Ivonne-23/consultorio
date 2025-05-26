@@ -39,7 +39,6 @@ class OdontologosController extends Controller
         }
 
         Odontologos::create($validatedData);
-
         return redirect()->route('odontologos.index')->with('success', 'Odontólogo creado con éxito.');
     }
 
