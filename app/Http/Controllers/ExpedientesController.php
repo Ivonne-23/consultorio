@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expediente;
-use App\Models\Odontologos;
 use Illuminate\Http\Request;
-use App\Models\Paciente;
-use App\Models\Odontologo;
+use App\Models\pacientes;
+use App\Models\Odontologos;
 use App\Models\Citas;
-use App\Models\Tratamiento;
+
 
 class ExpedientesController extends Controller
 {

@@ -17,7 +17,7 @@
                     <p><strong>Descripción: </strong> {{ $tratamiento->descripcion }} </p>
                     <p><strong>Costo: </strong> {{ $tratamiento->costo_formateado }} </p>
 
-                    <a href="{{ route('tratamientos.index') }}" class="btn btn-primary mt-4">Volver</a>
+                    <a href="{{ route('welcome.index') }}" class="btn btn-primary mt-4">Volver</a>
                 </div>
             </div>
         </div>

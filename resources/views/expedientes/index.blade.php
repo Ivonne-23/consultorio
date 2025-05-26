@@ -15,17 +15,21 @@
             @forelse($citas as $cita)
                 <tr>
                     <td>
+
                         {{ $cita->paciente->nombre ?? '' }}
                         {{ $cita->paciente->apellido_paterno ?? '' }}
                         {{ $cita->paciente->apellido_materno ?? '' }}
                     </td>
                     <td>
-
+                        {{ 'odontólogo(a): ' }}
                         {{ $cita->odontologo->nombre ?? '' }}
                         {{ $cita->odontologo->apellido_paterno ?? '' }}
                         {{ $cita->odontologo->apellido_materno ?? '' }}
+                        <br>
+                        {{ 'fecha cita: ' }}
                         {{ \Carbon\Carbon::parse($cita->fecha)->format('Y-m-d') ?? 'No disponible' }}
                     </td>
+
                 </tr>
             @empty
                 <tr>
