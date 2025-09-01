@@ -1,102 +1,126 @@
-@extends('layouts.app')
+@extends('layouts.menu_dash')
+
 @section('content')
-    <div class="container bg-white">
+    <div class="container-fluid p-0">
         <div class="row">
-            <div class="col-2 bg-primary p-4 text-white vh-100">
-                <div class="text-center mb-4">
-                    <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle w-75" alt="Logo Consultorio">
-                </div>
-                <h4 class="p-2"><i class="bi bi-house-door"></i> Inicio</h4>
-                <h5 class="p-2"><a href="{{route('odontologos.index')}}" class="btn text-decoration-none" {{ request()->routeIs('odontologos.index')? 'active_custom':''}} text-white><i class="bi bi-person-badge"></i> Odontologos</a></h5>
-                <h4 class="p-2"><a href="{{route('pacientes.index')}}" class="btn text-decoration-none" {{ request()->routeIs('pacientes.index')? 'active_custom':''}} text-white><i class="bi bi-person-lines-fill"></i> Pacientes</a></h4>
-                <h4 class="p-2"><i class="bi bi-calendar-check"></i> Citas</h4>
-                <h5 class="p-2"><i class="bi bi-file-earmark-medical"></i> Expedientes</h5>
-                <h4 class="p-2"><i class="bi bi-bar-chart"></i> Pagos</h4>
-                <h5 class="p-2"> <i class="bi bi-gear"></i> Pagos</h5>
-                <h4 class="p-2 text-white">
-                    <form method="POST" action="{{route('logout')}}">
-                        @csrf
-                        <button type="submit" class="btn btn-text-decoration-none text-white">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión</button>
-                </form>
-                </h4>
-            </div>
-            <div class="col bg-light p-4">
+            <!-- Panel de Control -->
+            <div class="col-md-12 p-4">
+                <h2 class="mb-4 text-center"> Panel de Control</h2>
                 <div class="row mb-4">
-                    <div class="col">
-                        <h2 class="text-cons"><i class="bi bi-bar-chart-line"></i> Panel de Control</h2>
+                    <div class="col-md-4 mb-3">
+                        <div class="card bg-info text-white h-100">
+                            <div class="card-body text-center py-4">
+                                <i class="bi bi-person-badge fs-1 mb-3"></i>
+                                <h5 class="card-title">Odontólogos</h5>
+                                <h3 class="mb-0">{{ $odontologos }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card bg-info text-white h-100">
+                            <div class="card-body text-center py-4">
+                                <i class="bi bi-person-lines-fill fs-1 mb-3"></i>
+                                <h5 class="card-title">Pacientes</h5>
+                                <h3 class="mb-0">{{ $pacientes }}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Citas Hoy -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card bg-info text-white h-100">
+                            <div class="card-body text-center py-4">
+                                <i class="bi bi-calendar-check fs-1 mb-3"></i>
+                                <h5 class="card-title">Citas Hoy</h5>
+                                <h3 class="mb-0">{{ $citasHoy }}</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 p-2">
-                        <div class="card text-center text-white bg-info p-5">
-                            <h5><i class="bi bi-person-badge"></i> Odontologos</h5>
-                            <h3>5</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 p-2">
-                        <div class="card text-center text-white bg-info p-5">
-                            <h5><i class="bi bi-person-lines-fill"></i> Pacientes</h5>
-                            <h3>120</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 p-2">
-                        <div class="card text-center text-white bg-info p-5">
-                            <h5><i class="bi bi-calendar-check"></i> Citas Hoy</h5>
-                            <h3>15</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 p-2">
-                        <div class="card text-center text-white bg-info p-5">
-                            <h5><i class="bi bi-file-earmark-medical"></i> Expedientes</h5>
-                            <h3>200</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-md-6 p-3">
-                        <div class="card p-5">
-                            <h3><i class="bi bi-bell"></i> Notificaciones Recientes</h3>
-                            <ul class="list-group list-group-flush">
-                                <h5><li class="list-group-item text-lg">Cita con Juan Pérez a las 10:00 AM</li></h5>
-                                <h5><li class="list-group-item text-lg">Expediente de María López actualizado</li></h5>
-                                <h5><li class="list-group-item text-lg">Nuevo paciente registrado: Carlos Méndez</li></h5>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6 p-3">
-                        <div class="card p-5">
-                            <h3><i class="bi bi-calendar2-week"></i> Próximas Citas</h3>
-                            <table class="table table-lg">
-                                <thead>
-                                <tr>
-                                    <th class="h5">Hora</th>
-                                    <th class="h5">Paciente</th>
-                                    <th class="h5">Doctor</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="h5">10:00 AM</td>
-                                    <td class="h5">Juan Pérez</td>
-                                    <td class="h5">Dr. Teresa</td>
-                                </tr>
-                                <tr>
-                                    <td class="h5">11:30 AM</td>
-                                    <td class="h5">Ricardo Hernández</td>
-                                    <td class="h5">Dra. Ivonne</td>
-                                </tr>
-                                <tr>
-                                    <td class="h5">02:00 PM</td>
-                                    <td class="h5">Carlos Méndez</td>
-                                    <td class="h5">Dra.Miranda</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-md-12 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-calendar2-week me-2"></i> Próximas Citas</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover mb-0">
+                                        <thead class="table-light">
+                                        <tr>
+                                            <th>Fecha y Hora</th>
+                                            <th>Paciente</th>
+                                            <th>Odontólogo</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @forelse($proximasCitas as $cita)
+                                            <tr>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($cita->fecha)->format('d/m/Y') }}<br>
+                                                    <small class="text-muted">{{ \Carbon\Carbon::createFromFormat('H:i:s', $cita->hora)->format('h:i A') }}</small>
+                                                </td>
+                                                <td>{{ $cita->nombre_paciente }}</td>
+                                                <td>Dr(a). {{ $cita->nombre_odontologo }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="3" class="text-center text-muted">No hay próximas citas registradas.</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .bg-primary-dark {
+            background-color: rgba(0,0,0,0.1) !important;
+            border-radius: 5px;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(0,0,0,0.1) !important;
+            border-radius: 5px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .col-md-4, .col-md-12 {
+            padding: 15px;
+        }
+
+        @media (max-width: 767px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .col-md-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 @endsection
